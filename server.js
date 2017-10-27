@@ -2,19 +2,20 @@
 
 // set up ======================================================================
 // get all the tools we need
-var express  = require('express');
-var app      = express();
-var port     = process.env.PORT || 3000;
-var mongoose = require('mongoose'); //Mongoose is object modeling for our MongoDB database.
-var passport = require('passport'); //Passport stuff will help us authenticating with different methods.
-var flash    = require('connect-flash'); //Connect-flash allows for passing session flashdata messages.
+const express  = require('express');
+const path = require('path');
+const app      = express();
+const port     = process.env.PORT || 3000;
+const mongoose = require('mongoose'); //Mongoose is object modeling for our MongoDB database.
+const passport = require('passport'); //Passport stuff will help us authenticating with different methods.
+const flash    = require('connect-flash'); //Connect-flash allows for passing session flashdata messages.
+const exphbs = require('express-handlebars');
+const morgan       = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser   = require('body-parser');
+const session      = require('express-session');
 
-var morgan       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
-
-var configDB = require('./config/database.js');
+const configDB = require('./config/database.js');
 
 // configuration ===============================================================
 mongoose.Promise = global.Promise;
@@ -31,7 +32,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.set('view engine', 'ejs'); // set up ejs for templating
+// Handlebars Middleware
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main'
+}));
+
+app.set('view engine', 'handlebars'); // set up ejs for templating
 
 // required for passport
  // session secret
@@ -43,6 +49,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+
+//Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
