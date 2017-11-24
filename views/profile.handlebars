@@ -1,17 +1,20 @@
-<div class="page-header text-center">
-    <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-</div>
 <div class="row">
-    <!-- LOCAL INFORMATION -->
-    <div class="col-sm-6">
-        <div class="well">
-            <h3><span class="fa fa-user"></span> Local</h3>
-                <p>
-                    <strong>id</strong>: {{user.id}}<br>
-                    <strong>email</strong>: {{user.local.email}}<br>
-                    <strong>password</strong>: {{user.local.password}}
-                </p>
-        </div>
+  <div class="page-header text-center">
+      <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+  </div>
+
+  <div class="card col s12 m6">
+    <div class="card-content">
+      <h3><span class="fa fa-user"></span> {{user.firstName}} {{user.lastName}} (Local)</h3>
+      <p>
+        <strong>id</strong>: {{user.id}}<br>
+        <strong>First Name</strong>: {{user.firstName}}<br>
+        <strong>Last Name</strong>: {{user.lastName}}<br>
+        <strong>email</strong>: {{user.local.email}}<br>
+        <strong>password</strong>: {{user.local.password}}
+      </p>
     </div>
+  </div>
+
 </div>
