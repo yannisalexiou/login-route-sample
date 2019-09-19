@@ -4,7 +4,7 @@ module.exports = {
     'facebookAuth': {
         'clientID': '2561001130805328', // your App ID
         'clientSecret': 'cbc21f02039c6bd8465c8eff2b8eb1a4', // your App Secret
-        'callbackURL': 'https://login-route.herokuapp.comauth/facebook/callback',
+        'callbackURL': 'https://login-route.herokuapp.com/auth/facebook/callback',
         'profileURL': 'https://graph.facebook.com/v4.0/me?fields=first_name,last_name,email',
         'profileFields': ['id', 'email', 'name'] // For requesting permissions from Facebook API
     },
