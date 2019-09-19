@@ -71,8 +71,8 @@ module.exports = function (passport) {
                         console.log("profile: ", profile);
                         newUser.facebook.id = profile.id; // set the users facebook id                   
                         newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
-                        newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                        newUser.facebook.email = profile.email.value; // facebook can return multiple emails so we'll take the first
+                        newUser.facebook.name = profile.displayName // look at the passport user profile to see how names are returned
+                        newUser.facebook.email = '.::Cannot Retrieve Email::.'//profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 
                         // save our user to the database
                         newUser.save(function (err) {
